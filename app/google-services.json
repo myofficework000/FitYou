@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "839585157927",
+    "project_id": "fityou-d1058",
+    "storage_bucket": "fityou-d1058.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:839585157927:android:49324603e67b2de0200f02",
+        "android_client_info": {
+          "package_name": "com.business.fityou"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "839585157927-d84r02j6jnh41qs1o19gl7om3amd2uu8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDcJT347Ltns7cOvWapdxpbEqrIAR-5dGY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "839585157927-d84r02j6jnh41qs1o19gl7om3amd2uu8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
