@@ -1,6 +1,5 @@
 package com.business.fityou.data.models
 
-
 data class ExerciseHistoryItem(
     val exercise: Exercise? = null,
     val date: Long? = System.currentTimeMillis(),

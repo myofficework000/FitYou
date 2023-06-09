@@ -11,13 +11,13 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:name="com.business.fityou.FitYouApp"
-        android:theme="@style/Theme.InFit">
+        android:theme="@style/Theme.FitYou">
         <service android:name="com.business.fityou.data.service.WorkoutTimerService"
             android:enabled="true"/>
         <activity
             android:name="com.business.fityou.MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.InFit">
+            android:theme="@style/Theme.FitYou">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
