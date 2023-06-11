@@ -1,10 +1,10 @@
 package com.business.fityou.ui.composables.login
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
-import androidx.compose.material.TextFieldDefaults.textFieldColors
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Email
 import androidx.compose.material.icons.rounded.Lock
@@ -56,11 +56,8 @@ fun LoginScreen(
 
     }
     LaunchedEffect(key1 = state.success) {
-        if (state.success) {
-            navController.navigate(MAIN_ROUTE)
-        }
+        if (state.success) navController.navigate(MAIN_ROUTE)
     }
-
 
     Surface(
         color = veryDarkBlue.copy(0.7f),
@@ -70,17 +67,12 @@ fun LoginScreen(
                 contentScale = ContentScale.Crop,
             )
             .fillMaxSize(),
-    )
-    {
-
-
+    ) {
         if (state.loading) {
-
             Column(
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = CenterHorizontally,
-
-                ) {
+            ) {
                 CircularProgressIndicator(
                     color = holoGreen,
                     strokeWidth = 5.dp,
@@ -90,19 +82,20 @@ fun LoginScreen(
         } else
             Column(
                 modifier = Modifier
-                    .fillMaxSize()
-                    .padding(horizontal = 50.dp),
+                    .padding(horizontal = 40.dp)
+                    .wrapContentSize()
+                    .background(Color.Gray.copy(alpha = 0.5f))
+                    .padding(20.dp),
                 verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.Start,
-
-                ) {
-
+                horizontalAlignment = CenterHorizontally,
+            ) {
                 Heading(
                     text = stringResource(R.string.login), modifier = Modifier
                         .align(Alignment.Start)
                         .padding(bottom = 20.dp)
                         .fillMaxWidth()
                 )
+
                 InputField(
                     eMail,
                     onValueChange = { eMail = it },
@@ -111,7 +104,6 @@ fun LoginScreen(
                     type = KeyboardType.Email
                 )
                 Spacer(modifier = Modifier.height(10.dp))
-
                 InputField(
                     input = password,
                     onValueChange = { password = it },
@@ -140,14 +132,9 @@ fun LoginScreen(
                         eMail = ""
                         password = ""
 
-
                     }
                 )
-
-
             }
-
-
     }
 }
 
@@ -161,19 +148,15 @@ fun InputField(
     type: KeyboardType = KeyboardType.Email,
     password: Boolean = false
 ) {
-
-    TextField(
+    OutlinedTextField(
         value = input,
         onValueChange = onValueChange,
         leadingIcon = {
             Icon(
                 imageVector = icon,
-                contentDescription = null,
-
-                )
-
+                contentDescription = null
+            )
         },
-        colors = textFieldColors(backgroundColor = white, textColor = Color.Black),
         label = { Text(text = placeholder) },
         modifier = Modifier.fillMaxWidth(),
         maxLines = 1,
@@ -184,26 +167,22 @@ fun InputField(
         visualTransformation = if (password) PasswordVisualTransformation() else {
             VisualTransformation.None
         }
-
     )
-
 }
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun SignUpRow(modifier: Modifier = Modifier) {
-
-    Row(
+    FlowRow(
         verticalAlignment = Alignment.CenterVertically,
         modifier = modifier
     ) {
-
         Text(
-            text = stringResource(R.string.sign_up_text),
+            text = stringResource(R.string.sign_up_text) + " ",
             fontWeight = FontWeight.Normal,
             color = white,
             fontFamily = outfit
         )
-        Spacer(modifier = Modifier.width(5.dp))
         Text(
             text = stringResource(R.string.sign_up),
             fontWeight = FontWeight.Bold,
