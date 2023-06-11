@@ -8,7 +8,6 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
@@ -48,14 +47,9 @@ class MainActivity : ComponentActivity() {
             IntentFilter(WorkoutTimerService.TIMER_UPDATED)
         )
         setContent {
-
             InFitTheme {
-
-                val workoutViewModel = hiltViewModel<WorkoutViewModel>()
-                val userViewModel = hiltViewModel<UserViewModel>()
                 navController = rememberNavController()
                 RootNavGraph(navController,userViewModel,workoutViewModel)
-
             }
         }
     }

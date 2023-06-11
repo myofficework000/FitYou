@@ -15,7 +15,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.business.fityou.R
@@ -30,7 +29,7 @@ import com.business.fityou.viewmodel.UserViewModel
 @Composable
 fun SignUpScreen(
     navController: NavHostController = rememberNavController(),
-    userViewModel: UserViewModel = viewModel(),
+    userViewModel: UserViewModel,
     scaffoldState: ScaffoldState
 ) {
 

@@ -9,7 +9,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -20,8 +19,8 @@ import com.business.fityou.viewmodel.WorkoutViewModel
 @Composable
 fun RootNavGraph(
     navController: NavHostController,
-    userViewModel: UserViewModel = viewModel(),
-    workoutViewModel: WorkoutViewModel = viewModel(),
+    userViewModel: UserViewModel,
+    workoutViewModel: WorkoutViewModel,
 ) {
 
     val bottomBarState = rememberSaveable { (mutableStateOf(false)) }

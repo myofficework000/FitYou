@@ -11,7 +11,6 @@ import androidx.compose.material.icons.rounded.List
 import androidx.compose.material.icons.rounded.PlayArrow
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
@@ -23,9 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
 import com.business.fityou.R
 import com.business.fityou.ui.composables.*
 import com.business.fityou.ui.navigation.Screens
@@ -35,13 +32,12 @@ import com.business.fityou.viewmodel.WorkoutViewModel
 import kotlinx.coroutines.launch
 import java.time.LocalDateTime
 
-@OptIn(ExperimentalComposeUiApi::class)
 @SuppressLint("CoroutineCreationDuringComposition")
 @Composable
 fun HomeScreen(
-    navController: NavHostController = rememberNavController(),
+    navController: NavHostController,
     userViewModel: UserViewModel,
-    workoutViewModel: WorkoutViewModel = viewModel(),
+    workoutViewModel: WorkoutViewModel,
     scaffoldState: ScaffoldState
 ) = with(workoutViewModel) {
 

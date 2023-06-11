@@ -1,6 +1,5 @@
 package com.business.fityou.viewmodel
 
-import android.app.Application
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -17,7 +16,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class UserViewModel @Inject constructor(
-    private val app: Application,
     private val repository: UserRepository
 ) : ViewModel() {
 
