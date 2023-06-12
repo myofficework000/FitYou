@@ -23,9 +23,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
 import com.business.fityou.R
 import com.business.fityou.data.service.WorkoutTimerService
 import com.business.fityou.data.service.WorkoutTimerService.Companion.TIMER_RUNNING
@@ -40,8 +38,8 @@ import com.business.fityou.viewmodel.WorkoutViewModel
 
 @Composable
 fun WorkoutScreen(
-    workoutViewModel: WorkoutViewModel = viewModel(),
-    navController: NavHostController = rememberNavController()
+    workoutViewModel: WorkoutViewModel,
+    navController: NavHostController
 ) = with(workoutViewModel) {
 
     val context = LocalContext.current
@@ -80,7 +78,7 @@ fun WorkoutScreen(
                         .fillMaxWidth()
                         .height(300.dp)
                         .padding(vertical = 10.dp),
-                    horizontalAlignment = Alignment.CenterHorizontally,
+                    horizontalAlignment = CenterHorizontally,
                     verticalArrangement = Arrangement.SpaceAround
                 ) {
 
@@ -178,7 +176,7 @@ fun WorkoutScreen(
                 timer = timerText
             )
 
-            currentExercise?.let { it ->
+            currentExercise?.let {
                 WorkoutCard(
                     exercise = it,
                     workoutViewModel = workoutViewModel,

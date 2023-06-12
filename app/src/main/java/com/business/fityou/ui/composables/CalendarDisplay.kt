@@ -18,7 +18,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.business.fityou.R
 import com.business.fityou.ui.theme.*
 import com.business.fityou.viewmodel.WorkoutViewModel
@@ -30,7 +29,7 @@ import kotlin.collections.ArrayList
 fun CalendarDisplay(
     modifier: Modifier = Modifier,
     workoutDays: ArrayList<DayOfWeek>?,
-    workoutViewModel: WorkoutViewModel = viewModel()
+    workoutViewModel: WorkoutViewModel
 ) {
 
     LazyRow(
@@ -78,7 +77,7 @@ fun CalendarDisplayItem(
     modifier: Modifier = Modifier,
     date: LocalDateTime,
     colorFilter: ColorFilter,
-    workoutViewModel: WorkoutViewModel = viewModel()
+    workoutViewModel: WorkoutViewModel
 ) {
 
     var isSelected by remember { mutableStateOf(false) }

@@ -7,12 +7,12 @@ plugins {
 }
 
 android {
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.business.fityou"
         minSdk 26
-        targetSdk 32
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
@@ -71,15 +71,15 @@ dependencies {
     //Dagger - Hilt
     implementation "com.google.dagger:hilt-android:2.45"
     kapt "com.google.dagger:hilt-android-compiler:2.45"
-    implementation "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03"
-    kapt "androidx.hilt:hilt-compiler:1.0.0"
     implementation 'androidx.hilt:hilt-navigation-compose:1.0.0'
 
-
     //Firebase
-    implementation 'com.google.firebase:firebase-auth-ktx'
     implementation platform('com.google.firebase:firebase-bom:30.0.1')
-    implementation 'com.google.firebase:firebase-firestore-ktx:24.2.1'
+    implementation 'com.google.firebase:firebase-firestore-ktx'
+    implementation 'com.google.firebase:firebase-auth-ktx'
+
+    //Google OAuth
+    implementation 'com.google.android.gms:play-services-auth:20.5.0'
 
 
     // Lottie Animation

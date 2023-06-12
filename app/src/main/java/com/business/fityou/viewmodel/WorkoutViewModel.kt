@@ -1,6 +1,5 @@
 package com.business.fityou.viewmodel
 
-import android.app.Application
 import android.util.Log
 import androidx.compose.runtime.*
 import androidx.lifecycle.ViewModel
@@ -22,7 +21,6 @@ import kotlin.collections.ArrayList
 
 @HiltViewModel
 class WorkoutViewModel @Inject constructor(
-    private val app: Application,
     private val repository: WorkoutRepository
 ) : ViewModel() {
 
