@@ -68,7 +68,7 @@ fun NavGraphBuilder.mainNavGraph(
             /*
             TODO: PROFILE SCREEN
              */
-            ProfileScreen()
+            ProfileScreen(userViewModel::logOut)
             bottomBarState.value = true
         }
 

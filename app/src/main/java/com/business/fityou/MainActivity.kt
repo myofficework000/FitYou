@@ -8,16 +8,15 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import dagger.hilt.android.AndroidEntryPoint
 import com.business.fityou.data.service.WorkoutTimerService
 import com.business.fityou.ui.navigation.RootNavGraph
 import com.business.fityou.ui.theme.InFitTheme
 import com.business.fityou.util.getTimeStringFromDouble
 import com.business.fityou.viewmodel.UserViewModel
 import com.business.fityou.viewmodel.WorkoutViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -48,14 +47,9 @@ class MainActivity : ComponentActivity() {
             IntentFilter(WorkoutTimerService.TIMER_UPDATED)
         )
         setContent {
-
             InFitTheme {
-
-                val workoutViewModel = hiltViewModel<WorkoutViewModel>()
-                val userViewModel = hiltViewModel<UserViewModel>()
                 navController = rememberNavController()
                 RootNavGraph(navController,userViewModel,workoutViewModel)
-
             }
         }
     }

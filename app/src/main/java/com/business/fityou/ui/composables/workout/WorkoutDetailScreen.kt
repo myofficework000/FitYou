@@ -7,7 +7,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.AddCircle
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -16,9 +15,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
 import com.business.fityou.R
 import com.business.fityou.data.models.equipments
 import com.business.fityou.ui.composables.FloatingAddButton
@@ -33,13 +30,12 @@ import com.business.fityou.ui.theme.lightBlue
 import com.business.fityou.util.DifficultyLevels.Companion.Intermediate
 import com.business.fityou.viewmodel.WorkoutViewModel
 
-@OptIn(ExperimentalMaterialApi::class, ExperimentalComposeUiApi::class)
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun WorkoutDetailScreen(
-    navController: NavHostController = rememberNavController(),
-    workoutViewModel: WorkoutViewModel = viewModel(),
-
-    ) = with(workoutViewModel) {
+    navController: NavHostController,
+    workoutViewModel: WorkoutViewModel
+) = with(workoutViewModel) {
 
     getWorkouts()
 

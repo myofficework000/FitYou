@@ -81,4 +81,5 @@
     <string name="equipment">equipment</string>
     <string name="logout">Logout</string>
     <string name="logout_alert_text">are you sure you want to logout?</string>
+    <string name="google_sign_in_error1">Server is still signing out the user</string>
 </resources>

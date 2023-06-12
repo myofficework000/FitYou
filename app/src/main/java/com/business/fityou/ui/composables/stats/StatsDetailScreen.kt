@@ -19,11 +19,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.business.fityou.R
 import com.business.fityou.data.models.ExerciseHistoryItem
+import com.business.fityou.data.repository.WorkoutRepositoryImpl
 import com.business.fityou.ui.composables.home.Heading
 import com.business.fityou.ui.theme.darkBlue
 import com.business.fityou.ui.theme.holoGreen
@@ -33,11 +33,10 @@ import com.business.fityou.viewmodel.WorkoutViewModel
 import java.text.SimpleDateFormat
 import java.util.*
 
-@Preview
 @Composable
 fun StatsDetailScreen(
-    navController: NavHostController = rememberNavController(),
-    workoutViewModel: WorkoutViewModel = viewModel()
+    navController: NavHostController,
+    workoutViewModel: WorkoutViewModel
 ) = with(workoutViewModel) {
 
     getHistoryDataDetails()
@@ -215,3 +214,9 @@ fun ChartView(modifier: Modifier = Modifier, chartData: List<Double>) {
     }
 }
 
+
+@Preview
+@Composable
+private fun StatsDetailScreenPreview() {
+    StatsDetailScreen(rememberNavController(), WorkoutViewModel(WorkoutRepositoryImpl()))
+}

@@ -1,6 +1,5 @@
 package com.business.fityou.data.repository
 
-import android.app.Application
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.firestore.DocumentSnapshot
@@ -18,11 +17,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
 
-class WorkoutRepositoryImpl @Inject constructor(
-    private val app: Application,
-    ) : WorkoutRepository {
-
-
+class WorkoutRepositoryImpl @Inject constructor() : WorkoutRepository {
 
     private var workoutPlanId: String? = null
 

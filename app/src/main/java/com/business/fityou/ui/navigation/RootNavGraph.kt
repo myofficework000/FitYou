@@ -5,11 +5,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -20,8 +20,8 @@ import com.business.fityou.viewmodel.WorkoutViewModel
 @Composable
 fun RootNavGraph(
     navController: NavHostController,
-    userViewModel: UserViewModel = viewModel(),
-    workoutViewModel: WorkoutViewModel = viewModel(),
+    userViewModel: UserViewModel,
+    workoutViewModel: WorkoutViewModel,
 ) {
 
     val bottomBarState = rememberSaveable { (mutableStateOf(false)) }
@@ -33,6 +33,14 @@ fun RootNavGraph(
     when (navBackStackEntry?.destination?.route) {
         LOGIN_ROUTE -> bottomBarState.value = false
         MAIN_ROUTE -> bottomBarState.value = true
+    }
+
+    LaunchedEffect(Unit) { userViewModel.checkLoginState() }
+    LaunchedEffect(userViewModel.signInState) {
+        if (userViewModel.signInState.success) navController.navigate(MAIN_ROUTE)
+        else navController.navigate(LOGIN_ROUTE) {
+            popUpTo(navController.graph.id) { inclusive = true }
+        }
     }
 
     Scaffold(
