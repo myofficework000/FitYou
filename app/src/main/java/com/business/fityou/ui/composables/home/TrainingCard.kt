@@ -38,7 +38,6 @@ import com.business.fityou.data.models.WorkoutPlan
 import com.business.fityou.ui.theme.veryDarkBlue
 import com.business.fityou.ui.theme.white
 import com.business.fityou.util.DifficultyLevels
-import com.business.fityou.R
 
 @Composable
 fun TrainingCard(
