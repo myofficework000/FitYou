@@ -26,6 +26,7 @@ import com.business.fityou.ui.navigation.Screens
 import com.business.fityou.ui.theme.holoGreen
 import com.business.fityou.ui.theme.white
 import com.business.fityou.viewmodel.WorkoutViewModel
+import com.business.fityou.R
 
 @Preview
 @Composable

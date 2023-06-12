@@ -23,7 +23,7 @@ import com.business.fityou.R
 import com.business.fityou.data.models.equipments
 import com.business.fityou.ui.composables.FloatingAddButton
 import com.business.fityou.ui.composables.RegularButton
-import com.business.fityou.ui.composables.WorkoutInfo
+import com.business.fityou.ui.composables.home.WorkoutInfo
 import com.business.fityou.ui.composables.home.Heading
 import com.business.fityou.ui.composables.home.SubHeading
 import com.business.fityou.ui.composables.home.Title

@@ -1,6 +1,10 @@
 package com.business.fityou.ui.composables.home
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -11,13 +15,19 @@ import androidx.compose.ui.unit.dp
 import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.rememberLottieComposition
+import com.business.fityou.R.raw
+import com.business.fityou.R.string
 import com.business.fityou.ui.composables.RegularButton
 
 @Preview
 @Composable
-fun EmptyWorkoutPlanView(modifier: Modifier = Modifier,user:String="", onClick: () -> Unit = {}) {
+fun EmptyWorkoutPlanView(
+    modifier: Modifier = Modifier,
+    user: String = "",
+    onClick: () -> Unit = {}
+) {
 
-    val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.empty_workout_anim))
+    val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(raw.empty_workout_anim))
 
 
     Column(
@@ -26,23 +36,24 @@ fun EmptyWorkoutPlanView(modifier: Modifier = Modifier,user:String="", onClick: 
         horizontalAlignment = Alignment.Start
     ) {
 
-        Heading(text = stringResource(R.string.welcome) +" "+user.replaceFirstChar { it.uppercase() })
+        Heading(text = stringResource(string.welcome) + " " + user.replaceFirstChar { it.uppercase() })
 
-        SubHeading(text = stringResource(R.string.empty_plan_text))
+        SubHeading(text = stringResource(string.empty_plan_text))
 
         LottieAnimation(
             composition = composition,
             modifier = Modifier
                 .fillMaxWidth()
-                .height(250.dp)
-            ,
+                .height(250.dp),
             iterations = Int.MAX_VALUE
         )
 
 
-        RegularButton(text = stringResource(R.string.get_started),
+        RegularButton(
+            text = stringResource(string.get_started),
             modifier = Modifier.align(Alignment.CenterHorizontally),
-            onClick = onClick)
+            onClick = onClick
+        )
 
 
     }

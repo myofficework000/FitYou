@@ -1,4 +1,4 @@
-package com.business.fityou.ui.composables
+package com.business.fityou.ui.composables.home
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -24,11 +24,10 @@ import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.business.fityou.data.models.WorkoutPlan
-import com.business.fityou.ui.composables.home.Heading
-import com.business.fityou.ui.composables.home.Title
 import com.business.fityou.ui.theme.veryDarkBlue
 import com.business.fityou.ui.theme.white
 import com.business.fityou.util.DifficultyLevels
+import com.business.fityou.R
 
 @Composable
 fun TrainingCard(

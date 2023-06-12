@@ -17,6 +17,8 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.business.fityou.R
+import com.business.fityou.R.*
 import com.business.fityou.data.models.Muscle
 import com.business.fityou.ui.composables.home.Heading
 import com.business.fityou.ui.composables.home.Title
@@ -42,18 +44,24 @@ fun ExercisesScreen(
             horizontalAlignment = Alignment.Start,
         ) {
 
-            Heading(text = stringResource(R.string.exercises))
+            Heading(text = stringResource(string.exercises))
 
             Row(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier.fillMaxWidth()
             ) {
-                ExerciseItem(image = R.drawable.chest_anatomy_nb, bodyPart = stringResource(R.string.chest)) {
+                ExerciseItem(
+                    image = drawable.chest_anatomy_nb,
+                    bodyPart = stringResource(R.string.chest)
+                ) {
                     workoutViewModel.selectMuscleGroup(listOf(Muscle.Chest), "Chest")
                     navController.navigate(Screens.ExerciseDetails.route)
                 }
-                ExerciseItem(image = R.drawable.deltoids_anatomy_nb, bodyPart = stringResource(R.string.shoulders)) {
+                ExerciseItem(
+                    image = drawable.deltoids_anatomy_nb,
+                    bodyPart = stringResource(R.string.shoulders)
+                ) {
                     workoutViewModel.selectMuscleGroup(
                         listOf(
                             Muscle.AnteriorDeltoids,
@@ -62,7 +70,10 @@ fun ExercisesScreen(
                     )
                     navController.navigate(Screens.ExerciseDetails.route)
                 }
-                ExerciseItem(image = R.drawable.biceps_anatomy_nb, bodyPart = stringResource(R.string.biceps)) {
+                ExerciseItem(
+                    image = drawable.biceps_anatomy_nb,
+                    bodyPart = stringResource(R.string.biceps)
+                ) {
                     workoutViewModel.selectMuscleGroup(listOf(Muscle.Biceps), "Biceps")
                     navController.navigate(Screens.ExerciseDetails.route)
                 }
@@ -73,15 +84,24 @@ fun ExercisesScreen(
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier.fillMaxWidth()
             ) {
-                ExerciseItem(image = R.drawable.triceps_anatomy_nb, bodyPart = stringResource(R.string.triceps)) {
+                ExerciseItem(
+                    image = R.drawable.triceps_anatomy_nb,
+                    bodyPart = stringResource(R.string.triceps)
+                ) {
                     workoutViewModel.selectMuscleGroup(listOf(Muscle.Triceps), "Triceps")
                     navController.navigate(Screens.ExerciseDetails.route)
                 }
-                ExerciseItem(image = R.drawable.traps_anatomy_nb, bodyPart = stringResource(R.string.upper_back)) {
+                ExerciseItem(
+                    image = R.drawable.traps_anatomy_nb,
+                    bodyPart = stringResource(R.string.upper_back)
+                ) {
                     workoutViewModel.selectMuscleGroup(listOf(Muscle.Traps), "Upper Back")
                     navController.navigate(Screens.ExerciseDetails.route)
                 }
-                ExerciseItem(image = R.drawable.lats_anatomy_nb, bodyPart = stringResource(R.string.lats)) {
+                ExerciseItem(
+                    image = R.drawable.lats_anatomy_nb,
+                    bodyPart = stringResource(R.string.lats)
+                ) {
                     workoutViewModel.selectMuscleGroup(listOf(Muscle.Lats), "Lats")
                     navController.navigate(Screens.ExerciseDetails.route)
                 }
