@@ -1,15 +1,20 @@
 package com.business.fityou.viewmodel
 
+import android.app.Activity
+import android.content.Intent
+import androidx.activity.compose.ManagedActivityResultLauncher
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.IntentSenderRequest
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import dagger.hilt.android.lifecycle.HiltViewModel
 import com.business.fityou.data.models.User
 import com.business.fityou.data.models.states.AuthState
 import com.business.fityou.domain.UserRepository
 import com.business.fityou.util.Resource
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -55,7 +60,7 @@ class UserViewModel @Inject constructor(
                 when (result) {
                     is Resource.Success -> {
                         signUpState = signUpState.copy(
-                            data = result.data,
+                            data = result.data?.user,
                             loading = false,
                             success = true,
                             error = null
@@ -125,13 +130,43 @@ class UserViewModel @Inject constructor(
             }
         }
 
-    fun logOut() = viewModelScope.launch {
+    fun launchGoogleSignIn(
+        launcher: ManagedActivityResultLauncher<IntentSenderRequest, ActivityResult>
+    ) {
+        viewModelScope.launch {
+            repository.getGoogleSignInIntent()?.let {
+                launcher.launch( IntentSenderRequest.Builder(it).build() )
+            }
+        }
+    }
 
-        repository.logOutUser()
+    fun signInWithGoogle(result: ActivityResult) {
+        if (result.resultCode == Activity.RESULT_OK && result.data != null)
+            viewModelScope.launch {
+                signInState = repository.loginUserByGoogle(result.data!!)
+            }
+    }
 
-        signInState = AuthState()
-        signUpState = AuthState()
+    fun checkLoginState() {
+        repository.getCurrentUser()?.let {
+            signInState = AuthState(
+                success = true,
+                uid = it.uid,
+                data = it
+            )
+        }
+    }
 
+
+    fun logOut() {
+        viewModelScope.launch {
+
+            repository.logOutUser()
+
+            signInState = AuthState()
+            signUpState = AuthState()
+
+        }
     }
 
 

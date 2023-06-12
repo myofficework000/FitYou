@@ -1,9 +1,9 @@
 package com.business.fityou.data.models.states
 
-import com.google.firebase.auth.AuthResult
+import com.google.firebase.auth.FirebaseUser
 
 data class AuthState(
-    val data: AuthResult? = null,
+    val data: FirebaseUser? = null,
     val loading: Boolean = false,
     val success:Boolean = false,
     val error: String? = null,

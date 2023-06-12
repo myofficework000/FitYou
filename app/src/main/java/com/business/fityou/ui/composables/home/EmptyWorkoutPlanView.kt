@@ -20,7 +20,11 @@ import com.business.fityou.ui.composables.RegularButton
 
 @Preview
 @Composable
-fun EmptyWorkoutPlanView(modifier: Modifier = Modifier,user:String="", onClick: () -> Unit = {}) {
+fun EmptyWorkoutPlanView(
+    modifier: Modifier = Modifier,
+    user: String = "",
+    onClick: () -> Unit = {}
+) {
 
     val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.empty_workout_anim))
 

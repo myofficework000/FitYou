@@ -54,7 +54,8 @@ fun HomeScreen(
     var openDialog by remember { mutableStateOf(false) }
     var openLogoutDialog by remember { mutableStateOf(false) }
 
-
+    // There's a log out button in the profile menu. If that one
+    //      is preferred, you can remove this.
     BackHandler(true) {
 
         openLogoutDialog = true

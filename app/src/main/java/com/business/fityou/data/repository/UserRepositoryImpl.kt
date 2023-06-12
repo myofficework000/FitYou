@@ -1,25 +1,28 @@
 package com.business.fityou.data.repository
 
 import android.app.Application
+import android.content.Intent
+import android.content.IntentSender
 import android.util.Log
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.business.fityou.data.models.User
+import com.business.fityou.data.models.states.AuthState
+import com.business.fityou.domain.GoogleAuthClient
 import com.business.fityou.domain.UserRepository
 import com.business.fityou.util.Resource
+import com.google.firebase.auth.FirebaseUser
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
 class UserRepositoryImpl @Inject constructor(
-    private val app: Application,
+    private val googleAuthClient: GoogleAuthClient,
     private val auth: FirebaseAuth
 ) : UserRepository {
 
     private val fireStoreUserCollection = Firebase.firestore.collection("users")
-
-    val currentUser = auth.currentUser
 
     override suspend fun createNewUser(
         userName: String,
@@ -64,9 +67,16 @@ class UserRepositoryImpl @Inject constructor(
 
     }
 
+    override suspend fun getGoogleSignInIntent(): IntentSender? =
+        googleAuthClient.googleAuthSignIn()
+
+    override suspend fun loginUserByGoogle(intent: Intent): AuthState =
+        googleAuthClient.firebaseSignIn(intent)
+
     override suspend fun logOutUser() {
-        auth.signOut()
+        googleAuthClient.signOut()
+        //auth.signOut() // GoogleAuthClient.signOut() already does this.
     }
 
-
+    override fun getCurrentUser(): FirebaseUser? = auth.currentUser
 }

@@ -1,5 +1,7 @@
 package com.business.fityou.ui.composables.login
 
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -45,6 +47,10 @@ fun LoginScreen(
     var eMail by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
 
+    val googleAuthLauncher = rememberLauncherForActivityResult(
+        ActivityResultContracts.StartIntentSenderForResult()
+    ) { userViewModel.signInWithGoogle(it) }
+
     LaunchedEffect(key1 = state.error) {
         state.error?.let {
             scaffoldState.snackbarHostState.showSnackbar(
@@ -54,9 +60,6 @@ fun LoginScreen(
             )
         }
 
-    }
-    LaunchedEffect(key1 = state.success) {
-        if (state.success) navController.navigate(MAIN_ROUTE)
     }
 
     Surface(
@@ -89,6 +92,7 @@ fun LoginScreen(
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = CenterHorizontally,
             ) {
+
                 Heading(
                     text = stringResource(R.string.login), modifier = Modifier
                         .align(Alignment.Start)
@@ -134,6 +138,30 @@ fun LoginScreen(
 
                     }
                 )
+
+                Spacer(Modifier.height(20.dp))
+
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 8.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(2.dp)
+                ) {
+                    Spacer(
+                        Modifier
+                            .height(2.dp)
+                            .weight(1f)
+                            .background(Color.Black) )
+                    Text("Or sign in with:")
+                    Spacer(
+                        Modifier
+                            .height(2.dp)
+                            .weight(1f)
+                            .background(Color.Black) )
+                }
+
+                GoogleSignInButton { userViewModel.launchGoogleSignIn(googleAuthLauncher) }
             }
     }
 }
