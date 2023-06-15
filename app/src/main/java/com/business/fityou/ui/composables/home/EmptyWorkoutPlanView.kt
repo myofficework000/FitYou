@@ -16,18 +16,17 @@ import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.business.fityou.R
+import com.business.fityou.data.models.User
 import com.business.fityou.ui.composables.RegularButton
 
 @Preview
 @Composable
 fun EmptyWorkoutPlanView(
     modifier: Modifier = Modifier,
-    user: String = "",
+    user: User? = null,
     onClick: () -> Unit = {}
 ) {
-
     val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.empty_workout_anim))
-
 
     Column(
         modifier = modifier.fillMaxSize(),
@@ -35,7 +34,12 @@ fun EmptyWorkoutPlanView(
         horizontalAlignment = Alignment.Start
     ) {
 
-        Heading(text = stringResource(R.string.welcome) +" "+user.replaceFirstChar { it.uppercase() })
+        Heading(text =
+            stringResource(R.string.welcome) +
+                if (user?.userName == null) "!"
+                else " ${user.userName.replaceFirstChar { it.uppercase() }}!"
+        )
+
 
         SubHeading(text = stringResource(R.string.empty_plan_text))
 

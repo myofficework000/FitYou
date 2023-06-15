@@ -4,20 +4,20 @@ import android.util.Log
 import androidx.compose.runtime.*
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.google.firebase.firestore.ktx.toObject
-import dagger.hilt.android.lifecycle.HiltViewModel
 import com.business.fityou.data.models.*
+import com.business.fityou.data.models.states.AuthState
 import com.business.fityou.data.models.states.WorkoutPlanState
 import com.business.fityou.domain.WorkoutRepository
 import com.business.fityou.util.*
 import com.business.fityou.util.DifficultyLevels.Companion.Beginner
+import com.google.firebase.firestore.ktx.toObject
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.time.DayOfWeek
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
 import javax.inject.Inject
-import kotlin.collections.ArrayList
 
 @HiltViewModel
 class WorkoutViewModel @Inject constructor(
@@ -203,13 +203,22 @@ class WorkoutViewModel @Inject constructor(
         calendarSelection = day
     }
 
-    fun getUser(uid:String) {
-        userId = uid
+    fun getUser(authState: AuthState) {
+        userId = authState.uid ?: ""
         viewModelScope.launch {
-            val userData = repository.getUser(uid)
-            userData.data?.let {
-                user = it.toObject<User>()
+            authState.uid?.let {
+                var firebaseData: User? = null
 
+                with(repository.getUser(it)) {
+                    if (this is Resource.Success) {
+                        firebaseData = this.data?.toObject<User>()
+                    }
+                }
+
+                user = User(
+                    userEmail = firebaseData?.userEmail ?: authState.data?.email,
+                    userName = firebaseData?.userName ?: authState.data?.displayName
+                )
             }
         }
     }

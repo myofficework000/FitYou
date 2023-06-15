@@ -1,7 +1,6 @@
 package com.business.fityou.viewmodel
 
 import android.app.Activity
-import android.content.Intent
 import androidx.activity.compose.ManagedActivityResultLauncher
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.IntentSenderRequest
@@ -27,6 +26,8 @@ class UserViewModel @Inject constructor(
     var signUpState by mutableStateOf(AuthState())
         private set
 
+    // This is basically auth.currentUser. It also gets the data if user already
+    //      signed in on startup.
     var signInState by mutableStateOf(AuthState())
         private set
 
