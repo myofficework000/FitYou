@@ -42,7 +42,7 @@ fun HomeScreen(
 ) = with(workoutViewModel) {
 
 
-    getUser(userViewModel.signInState.uid.toString())
+    getUser(userViewModel.signInState)
     getWorkoutPlan()
     getExercises()
 
@@ -290,7 +290,7 @@ fun HomeScreen(
             } ?: kotlin.run {
                 EmptyWorkoutPlanView(
                     modifier = Modifier.padding(horizontal = 15.dp),
-                    user = user?.userName.toString(),
+                    user = user,
                     onClick = { navController.navigate(Screens.WorkoutPlanSetUp.route) })
             }
         }

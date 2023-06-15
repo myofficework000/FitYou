@@ -30,7 +30,6 @@ import androidx.navigation.NavHostController
 import com.business.fityou.R
 import com.business.fityou.ui.composables.RegularButton
 import com.business.fityou.ui.composables.home.Heading
-import com.business.fityou.ui.navigation.MAIN_ROUTE
 import com.business.fityou.ui.navigation.Screens
 import com.business.fityou.ui.theme.*
 import com.business.fityou.viewmodel.UserViewModel
