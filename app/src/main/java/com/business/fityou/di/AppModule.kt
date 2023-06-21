@@ -2,6 +2,7 @@ package com.business.fityou.di
 
 
 import android.content.Context
+import android.content.SharedPreferences
 import com.google.android.gms.auth.api.identity.Identity
 import com.google.android.gms.auth.api.identity.SignInClient
 import com.google.firebase.auth.FirebaseAuth
@@ -26,4 +27,9 @@ object AppModule {
     @Singleton
     fun provideSignInClient(@ApplicationContext context: Context): SignInClient =
         Identity.getSignInClient(context)
+
+    @Provides
+    @Singleton
+    fun providePreferences(@ApplicationContext context: Context): SharedPreferences =
+        context.getSharedPreferences("settings", Context.MODE_PRIVATE)
 }

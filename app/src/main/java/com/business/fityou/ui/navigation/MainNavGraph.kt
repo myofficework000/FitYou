@@ -10,6 +10,7 @@ import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.ContentAlpha
 import androidx.compose.material.Icon
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.ScaffoldState
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -31,15 +32,15 @@ import androidx.navigation.navigation
 import com.business.fityou.ui.composables.exercises.ExerciseDetailScreen
 import com.business.fityou.ui.composables.exercises.ExercisesScreen
 import com.business.fityou.ui.composables.home.HomeScreen
-import com.business.fityou.ui.composables.onboarding.OnboardingScreen
 import com.business.fityou.ui.composables.profile.ProfileScreen
+import com.business.fityou.ui.composables.settings.SettingsScreen
 import com.business.fityou.ui.composables.stats.StatsDetailScreen
 import com.business.fityou.ui.composables.stats.StatsScreen
 import com.business.fityou.ui.composables.workout.WorkoutDetailScreen
 import com.business.fityou.ui.composables.workout.WorkoutPlanSetUpScreen
 import com.business.fityou.ui.composables.workout.WorkoutScreen
-import com.business.fityou.ui.theme.holoGreen
 import com.business.fityou.ui.theme.veryDarkBlue
+import com.business.fityou.viewmodel.SettingsViewModel
 import com.business.fityou.viewmodel.UserViewModel
 import com.business.fityou.viewmodel.WorkoutViewModel
 
@@ -48,6 +49,7 @@ fun NavGraphBuilder.mainNavGraph(
     bottomBarState: MutableState<Boolean>,
     userViewModel: UserViewModel,
     workoutViewModel: WorkoutViewModel,
+    settingsViewModel: SettingsViewModel,
     scaffoldState: ScaffoldState
 ) {
 
@@ -113,7 +115,10 @@ fun NavGraphBuilder.mainNavGraph(
             bottomBarState.value = true
         }
 
-
+        composable(route = Screens.Settings.route) {
+            SettingsScreen(vm = settingsViewModel, onSignOut = userViewModel::logOut)
+            bottomBarState.value = true
+        }
     }
 }
 
@@ -126,7 +131,8 @@ fun BottomNavBar(
         Screens.Home,
         Screens.Stats,
         Screens.Profile,
-        Screens.Exercises
+        Screens.Exercises,
+        Screens.Settings
     )
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
@@ -143,10 +149,8 @@ fun BottomNavBar(
                 }
                 .height(70.dp),
             elevation = 10.dp,
-            backgroundColor = holoGreen,
-
-
-            ) {
+            backgroundColor = MaterialTheme.colors.surface,
+        ) {
 
             screens.forEach {
 

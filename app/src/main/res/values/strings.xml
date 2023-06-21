@@ -122,4 +122,5 @@
 
     <string name="button_next">Next</string>
     <string name="button_lets_go">Let\'s go</string>
+    <string name="settings">Settings</string>
 </resources>
