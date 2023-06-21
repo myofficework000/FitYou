@@ -41,5 +41,5 @@ sealed class Screens(
     object WorkoutPlanSetUp :
         Screens(route = "workout_plan_setup_screen", title = R.string.set_up_workout_plan_heading)
 
-
+    object Settings : Screens(route = "settings", title = R.string.settings, icon = Icons.Rounded.Settings)
 }

@@ -2,6 +2,7 @@ package com.business.fityou.ui.navigation
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
@@ -14,6 +15,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.business.fityou.ui.theme.darkBlue
+import com.business.fityou.viewmodel.SettingsViewModel
 import com.business.fityou.viewmodel.UserViewModel
 import com.business.fityou.viewmodel.WorkoutViewModel
 
@@ -22,6 +24,7 @@ fun RootNavGraph(
     navController: NavHostController,
     userViewModel: UserViewModel,
     workoutViewModel: WorkoutViewModel,
+    settingsViewModel: SettingsViewModel
 ) {
 
     val bottomBarState = rememberSaveable { (mutableStateOf(false)) }
@@ -52,7 +55,7 @@ fun RootNavGraph(
                 false -> {}
             }
         },
-        backgroundColor = darkBlue,
+        backgroundColor = MaterialTheme.colors.background,
 
         ) {
 
@@ -76,6 +79,7 @@ fun RootNavGraph(
                 bottomBarState,
                 userViewModel,
                 workoutViewModel,
+                settingsViewModel,
                 scaffoldState
             )
 
