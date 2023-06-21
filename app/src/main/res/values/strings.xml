@@ -82,4 +82,44 @@
     <string name="logout">Logout</string>
     <string name="logout_alert_text">are you sure you want to logout?</string>
     <string name="google_sign_in_error1">Server is still signing out the user</string>
+
+    <string name="onboarding_title_one">Welcome to Fit You</string>
+    <string name="onboarding_title_two">Fuel Your Body</string>
+    <string name="onboarding_title_three">Track Your Nutrition</string>
+
+    <string name="onboarding_description_one">Discover new recipes and track your nutrition effortlessly.</string>
+    <string name="onboarding_description_two">Get personalized recommendations and keep your diet on track.</string>
+    <string name="onboarding_description_three">Easily log your meals and monitor your progress towards your health goals.</string>
+
+    <string name="home_fab_scan_product">Scan product</string>
+    <string name="home_fab_search_product">Search product</string>
+    <string name="home_header_user_photo">user photo</string>
+    <string name="home_header_welcome">Welcome back,</string>
+    <string name="home_header_notifications">notifications screen</string>
+    <string name="home_stats_calories_total">%1$d kcal</string>
+    <string name="home_stats_calories_left">%1$d kcal left</string>
+    <string name="home_macro_carbs_label">Carbs</string>
+    <string name="home_macro_proteins_label">Proteins</string>
+    <string name="home_macro_fats_label">Fats</string>
+
+    <string name="product_macro_calories">"Calories (kcal)</string>
+    <string name="product_macro_carbs">Carbs (g)</string>
+    <string name="product_macro_proteins">Proteins (g)</string>
+    <string name="product_macro_fats">Fats (g)</string>
+    <string name="product_meal_type_label">Meal type</string>
+    <string name="product_quantity_label">Meal quantity</string>
+    <string name="product_quantity_unit_label">g/ml</string>
+    <string name="product_save">save product</string>
+    <string name="product_delete">Delete product</string>
+    <string name="product_image">Product image</string>
+
+    <string name="scan_camera_permission_denied">Camera Permission Denied.</string>
+
+    <string name="search_bar_reset">reset search bar</string>
+    <string name="search_bar_placeholder">"Search …</string>
+    <string name="search_bar_icon_search">Search icon</string>
+    <string name="search_bar_icon_back">Back icon</string>
+
+    <string name="button_next">Next</string>
+    <string name="button_lets_go">Let\'s go</string>
 </resources>

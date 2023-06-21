@@ -6,7 +6,12 @@ import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.*
+import androidx.compose.material.BottomNavigation
+import androidx.compose.material.BottomNavigationItem
+import androidx.compose.material.ContentAlpha
+import androidx.compose.material.Icon
+import androidx.compose.material.ScaffoldState
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
@@ -26,6 +31,7 @@ import androidx.navigation.navigation
 import com.business.fityou.ui.composables.exercises.ExerciseDetailScreen
 import com.business.fityou.ui.composables.exercises.ExercisesScreen
 import com.business.fityou.ui.composables.home.HomeScreen
+import com.business.fityou.ui.composables.onboarding.OnboardingScreen
 import com.business.fityou.ui.composables.profile.ProfileScreen
 import com.business.fityou.ui.composables.stats.StatsDetailScreen
 import com.business.fityou.ui.composables.stats.StatsScreen
@@ -47,7 +53,6 @@ fun NavGraphBuilder.mainNavGraph(
 
     navigation(startDestination = Screens.Home.route, route = MAIN_ROUTE)
     {
-
         composable(
             route = Screens.Home.route
         ) {
@@ -107,7 +112,6 @@ fun NavGraphBuilder.mainNavGraph(
             WorkoutPlanSetUpScreen(workoutViewModel = workoutViewModel, navController)
             bottomBarState.value = true
         }
-
 
 
     }

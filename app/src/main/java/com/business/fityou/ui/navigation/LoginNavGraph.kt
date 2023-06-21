@@ -7,6 +7,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.business.fityou.ui.composables.login.LoginScreen
+import com.business.fityou.ui.composables.onboarding.OnboardingScreen
 import com.business.fityou.ui.composables.signup.SignUpScreen
 import com.business.fityou.viewmodel.UserViewModel
 
@@ -17,14 +18,21 @@ fun NavGraphBuilder.loginNavGraph(
     scaffoldState: ScaffoldState
 ) {
 
-    navigation(startDestination = Screens.Login.route, route = LOGIN_ROUTE)
+    navigation(startDestination = Screens.Onboarding.route, route = LOGIN_ROUTE)
     {
-        composable(route = Screens.Login.route){
-            LoginScreen(navController,userViewModel,scaffoldState)
+        composable(
+            route = Screens.Onboarding.route
+        ) {
+            OnboardingScreen(navController)
             bottomBarState.value = false
         }
-        composable(route = Screens.Signup.route){
-            SignUpScreen(navController,userViewModel,scaffoldState)
+
+        composable(route = Screens.Login.route) {
+            LoginScreen(navController, userViewModel, scaffoldState)
+            bottomBarState.value = false
+        }
+        composable(route = Screens.Signup.route) {
+            SignUpScreen(navController, userViewModel, scaffoldState)
             bottomBarState.value = false
         }
     }

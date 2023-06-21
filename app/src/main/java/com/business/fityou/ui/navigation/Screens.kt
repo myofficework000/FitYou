@@ -2,7 +2,10 @@ package com.business.fityou.ui.navigation
 
 import androidx.annotation.StringRes
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.*
+import androidx.compose.material.icons.rounded.Analytics
+import androidx.compose.material.icons.rounded.FitnessCenter
+import androidx.compose.material.icons.rounded.Home
+import androidx.compose.material.icons.rounded.Person
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.business.fityou.R
 
@@ -16,6 +19,7 @@ sealed class Screens(
     val title: Int, val icon: ImageVector? = null
 ) {
 
+    object Onboarding : Screens(route = "onboarding", title = R.string.app_name)
 
     object Home : Screens(route = "home_screen", title = R.string.home, icon = Icons.Rounded.Home)
     object Login : Screens(route = "login_screen", title = R.string.login)
