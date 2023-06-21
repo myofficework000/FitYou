@@ -8,12 +8,17 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.business.fityou.data.service.WorkoutTimerService
 import com.business.fityou.ui.navigation.RootNavGraph
+import com.business.fityou.ui.theme.DynamicThemes
+import com.business.fityou.ui.theme.FitYouDynamicTheme
 import com.business.fityou.ui.theme.InFitTheme
 import com.business.fityou.util.getTimeStringFromDouble
+import com.business.fityou.viewmodel.SettingsViewModel
 import com.business.fityou.viewmodel.UserViewModel
 import com.business.fityou.viewmodel.WorkoutViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -25,6 +30,7 @@ class MainActivity : ComponentActivity() {
 
     private val userViewModel: UserViewModel by viewModels()
     private val workoutViewModel: WorkoutViewModel by viewModels()
+    private val settingsViewModel: SettingsViewModel by viewModels()
     private var timeElapsed = 0.0
     private lateinit var serviceIntent: Intent
 
@@ -47,9 +53,14 @@ class MainActivity : ComponentActivity() {
             IntentFilter(WorkoutTimerService.TIMER_UPDATED)
         )
         setContent {
-            InFitTheme {
+            FitYouDynamicTheme( themeMode = decideTheme(settingsViewModel.currentTheme) ) {
                 navController = rememberNavController()
-                RootNavGraph(navController,userViewModel,workoutViewModel)
+                RootNavGraph(
+                    navController,
+                    userViewModel,
+                    workoutViewModel,
+                    settingsViewModel
+                )
             }
         }
     }
@@ -58,6 +69,12 @@ class MainActivity : ComponentActivity() {
         super.onDestroy()
         stopService(serviceIntent)
     }
+
+    @Composable
+    private fun decideTheme(theme: DynamicThemes?) = theme ?: (
+        if (isSystemInDarkTheme()) DynamicThemes.DEFAULT_DARK
+        else DynamicThemes.DEFAULT_LIGHT
+    )
 }
 
 
