@@ -9,6 +9,7 @@ import androidx.compose.material.icons.rounded.Person
 import androidx.compose.material.icons.rounded.Settings
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.business.fityou.R
+import com.business.fityou.ui.composables.product.ProductSource
 
 const val ROOT_ROUTE = "root_route"
 const val LOGIN_ROUTE = "login_route"
@@ -46,5 +47,19 @@ sealed class Screens(
     object WorkoutPlanSetUp :
         Screens(route = "workout_plan_setup_screen", title = R.string.set_up_workout_plan_heading)
 
-    object Settings : Screens(route = "settings", title = R.string.settings, icon = Icons.Rounded.Settings)
+    object Settings :
+        Screens(route = "settings", title = R.string.settings, icon = Icons.Rounded.Settings)
+
+
+    object Search : Screens(route = "search", title = R.string.Search)
+    object Product : Screens(
+        route = "product/{$ARG_PRODUCT_SOURCE}/{$ARG_PRODUCT_ID}",
+        title = R.string.product
+    ) {
+        fun navigationLink(source: ProductSource, id: Long): String =
+            "product/$source/$id"
+    }
 }
+
+const val ARG_PRODUCT_ID = "arg_product_id"
+const val ARG_PRODUCT_SOURCE = "arg_product_source"

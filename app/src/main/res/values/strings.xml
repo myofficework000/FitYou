@@ -125,4 +125,9 @@
     <string name="button_next">Next</string>
     <string name="button_lets_go">Let\'s go</string>
     <string name="settings">Settings</string>
+    <string name="Search">Search</string>
+    <string name="product">Products</string>
+
+    <string translatable="false" name="data_not_available">--</string>
+
 </resources>

@@ -58,9 +58,11 @@ fun StatsScreen(
             modifier = Modifier.padding(start = 15.dp, top = 40.dp, end = 15.dp)
         ) {
             Heading(text = stringResource(R.string.your_stats))
-            LazyColumn(modifier = Modifier
-                .padding(end = 40.dp, top = 25.dp)
-                .fillMaxHeight()) {
+            LazyColumn(
+                modifier = Modifier
+                    .padding(end = 40.dp, top = 25.dp)
+                    .fillMaxHeight()
+            ) {
                 items(statsExercises.toList()) { exercise ->
                     StatsItem(exercise) {
                         navController.navigate(Screens.StatsDetails.route)
@@ -69,16 +71,13 @@ fun StatsScreen(
                     Spacer(modifier = Modifier.height(20.dp))
                 }
             }
-
         }
-
     }
-
 }
 
 
 @Composable
-fun StatsItem(exercise:String,onClick:()->Unit) {
+fun StatsItem(exercise: String, onClick: () -> Unit) {
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
         modifier = Modifier
@@ -94,8 +93,6 @@ fun StatsItem(exercise:String,onClick:()->Unit) {
             tint = holoGreen,
             modifier = Modifier.size(50.dp)
         )
-
-
     }
 }
 
