@@ -158,6 +158,9 @@ class UserViewModel @Inject constructor(
         }
     }
 
+    fun isFirstTime(): Boolean = repository.isFirstTime()
+    fun noLongerFirstTime() = repository.noLongerFirstTime()
+
 
     fun logOut() {
         viewModelScope.launch {
