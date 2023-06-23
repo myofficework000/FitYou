@@ -43,9 +43,13 @@ import com.airbnb.lottie.compose.rememberLottieComposition
 import com.business.fityou.R
 import com.business.fityou.ui.navigation.Screens
 import com.business.fityou.ui.theme.BackgroundCreamWhite
+import kotlin.reflect.KFunction0
 
 @Composable
-fun OnboardingScreen(navController: NavController) {
+fun OnboardingScreen(
+    navController: NavController,
+    noLongerFirstTimeFunc: KFunction0<Unit>
+) {
     val context = LocalContext.current
     var currentPage by remember { mutableStateOf(0) }
 
@@ -111,9 +115,10 @@ fun OnboardingScreen(navController: NavController) {
                 .fillMaxWidth(),
             onClick = {
                 if (currentPage < 2) currentPage++
-                else navController.navigate(Screens.Login.route) {
-                    popUpTo(Screens.Onboarding.route) {
-                        inclusive = true
+                else {
+                    noLongerFirstTimeFunc()
+                    navController.navigate(Screens.Login.route) {
+                        popUpTo(navController.graph.id) { inclusive = true }
                     }
                 }
             }

@@ -17,13 +17,16 @@ fun NavGraphBuilder.loginNavGraph(
     userViewModel: UserViewModel,
     scaffoldState: ScaffoldState
 ) {
-
-    navigation(startDestination = Screens.Onboarding.route, route = LOGIN_ROUTE)
-    {
+    navigation(
+        startDestination =
+            if (userViewModel.isFirstTime()) Screens.Onboarding.route
+            else Screens.Login.route,
+        route = LOGIN_ROUTE
+    ) {
         composable(
             route = Screens.Onboarding.route
         ) {
-            OnboardingScreen(navController)
+            OnboardingScreen(navController, userViewModel::noLongerFirstTime)
             bottomBarState.value = false
         }
 
@@ -31,6 +34,7 @@ fun NavGraphBuilder.loginNavGraph(
             LoginScreen(navController, userViewModel, scaffoldState)
             bottomBarState.value = false
         }
+
         composable(route = Screens.Signup.route) {
             SignUpScreen(navController, userViewModel, scaffoldState)
             bottomBarState.value = false

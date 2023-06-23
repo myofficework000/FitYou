@@ -116,7 +116,10 @@ fun NavGraphBuilder.mainNavGraph(
         }
 
         composable(route = Screens.Settings.route) {
-            SettingsScreen(vm = settingsViewModel, onSignOut = userViewModel::logOut)
+            SettingsScreen(
+                settingsViewModel = settingsViewModel,
+                onSignOut = userViewModel::logOut
+            )
             bottomBarState.value = true
         }
     }
@@ -181,7 +184,7 @@ fun RowScope.AddItem(
 
         onClick = {
             navController.navigate(screens.route) {
-                popUpTo(navController.graph.findStartDestination().id)
+                popUpTo(Screens.Home.route)
                 launchSingleTop = true
             }
         },

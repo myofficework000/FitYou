@@ -40,7 +40,9 @@ fun RootNavGraph(
 
     LaunchedEffect(Unit) { userViewModel.checkLoginState() }
     LaunchedEffect(userViewModel.signInState) {
-        if (userViewModel.signInState.success) navController.navigate(MAIN_ROUTE)
+        if (userViewModel.signInState.success) navController.navigate(MAIN_ROUTE) {
+            popUpTo(Screens.Home.route) { inclusive = true }
+        }
         else navController.navigate(LOGIN_ROUTE) {
             popUpTo(navController.graph.id) { inclusive = true }
         }

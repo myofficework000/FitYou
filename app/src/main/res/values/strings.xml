@@ -80,7 +80,9 @@
     <string name="dumbbells">Dumbbells</string>
     <string name="equipment">equipment</string>
     <string name="logout">Logout</string>
-    <string name="logout_alert_text">are you sure you want to logout?</string>
+    <string name="logout_alert_text">Are you sure you want to log out?</string>
+    <string name="exit">Close App</string>
+    <string name="exit_alert_text">You\'re about to exit the app</string>
     <string name="google_sign_in_error1">Server is still signing out the user</string>
 
     <string name="onboarding_title_one">Welcome to Fit You</string>

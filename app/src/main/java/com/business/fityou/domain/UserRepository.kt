@@ -24,4 +24,7 @@ interface UserRepository {
     suspend fun logOutUser()
 
     fun getCurrentUser(): FirebaseUser?
+
+    fun isFirstTime(): Boolean
+    fun noLongerFirstTime()
 }

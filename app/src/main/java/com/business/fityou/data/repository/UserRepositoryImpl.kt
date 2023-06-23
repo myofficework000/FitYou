@@ -3,6 +3,7 @@ package com.business.fityou.data.repository
 import android.app.Application
 import android.content.Intent
 import android.content.IntentSender
+import android.content.SharedPreferences
 import android.util.Log
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
@@ -19,7 +20,8 @@ import javax.inject.Inject
 
 class UserRepositoryImpl @Inject constructor(
     private val googleAuthClient: GoogleAuthClient,
-    private val auth: FirebaseAuth
+    private val auth: FirebaseAuth,
+    private val pref: SharedPreferences
 ) : UserRepository {
 
     private val fireStoreUserCollection = Firebase.firestore.collection("users")
@@ -79,4 +81,6 @@ class UserRepositoryImpl @Inject constructor(
     }
 
     override fun getCurrentUser(): FirebaseUser? = auth.currentUser
+    override fun isFirstTime(): Boolean = pref.getBoolean("firstTime", true)
+    override fun noLongerFirstTime() = pref.edit().putBoolean("firstTime", false).apply()
 }

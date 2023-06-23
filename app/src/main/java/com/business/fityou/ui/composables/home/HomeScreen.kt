@@ -1,6 +1,7 @@
 package com.business.fityou.ui.composables.home
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -15,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -41,29 +43,26 @@ fun HomeScreen(
     scaffoldState: ScaffoldState
 ) = with(workoutViewModel) {
 
-
-    getUser(userViewModel.signInState)
-    getWorkoutPlan()
-    getExercises()
-
     val scope = rememberCoroutineScope()
     val state = workoutPlanState
     val date = workoutDay
     val selectedDay = calendarSelection
     var delay by remember { mutableStateOf(true) }
     var openDialog by remember { mutableStateOf(false) }
-    var openLogoutDialog by remember { mutableStateOf(false) }
+    var openExitDialog by remember { mutableStateOf(false) }
+    val ctx = LocalContext.current as? Activity
+
+    LaunchedEffect(Unit) {
+        getUser(userViewModel.signInState)
+        getWorkoutPlan()
+        getExercises()
+    }
 
     // There's a log out button in the profile menu. If that one
     //      is preferred, you can remove this.
-    BackHandler(true) {
+    BackHandler(true) { openExitDialog = true }
 
-        openLogoutDialog = true
-    }
-
-    LaunchedEffect(key1 = openDialog){
-        getWorkoutPlan()
-    }
+    LaunchedEffect(key1 = openDialog){ getWorkoutPlan() }
 
     Surface(
         modifier = Modifier
@@ -95,7 +94,7 @@ fun HomeScreen(
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(300.dp)
-                            .padding(vertical = 10.dp),
+                            .padding(10.dp),
                         horizontalAlignment = Alignment.CenterHorizontally,
                         verticalArrangement = Arrangement.SpaceAround
                     ) {
@@ -135,10 +134,10 @@ fun HomeScreen(
             }
 
         }
-        if (openLogoutDialog) {
+        if (openExitDialog) {
 
             Dialog(
-                onDismissRequest = { openLogoutDialog = false },
+                onDismissRequest = { openExitDialog = false },
                 properties = DialogProperties(usePlatformDefaultWidth = false)
 
             ) {
@@ -160,10 +159,10 @@ fun HomeScreen(
                         verticalArrangement = Arrangement.SpaceAround
                     ) {
 
-                        SubHeading(text = stringResource(R.string.logout), color = holoGreen)
+                        SubHeading(text = stringResource(R.string.exit), color = holoGreen)
 
                         Title(
-                            text = stringResource(R.string.logout_alert_text),
+                            text = stringResource(R.string.exit_alert_text),
 
                             )
 
@@ -176,14 +175,14 @@ fun HomeScreen(
                         ) {
 
                             RegularButton(text = stringResource(R.string.confirm), onClick = {
-                                userViewModel.logOut()
+                                /*userViewModel.logOut()
                                 openLogoutDialog = false
-                                navController.navigateUp()
-
+                                navController.navigateUp()*/
+                                ctx?.finish()
                             })
 
                             RegularButton(text = stringResource(R.string.dismiss), onClick = {
-                                openLogoutDialog = false
+                                openExitDialog = false
                             })
 
                         }
