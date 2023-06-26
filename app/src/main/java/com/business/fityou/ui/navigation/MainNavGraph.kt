@@ -22,7 +22,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
-import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
@@ -32,7 +31,9 @@ import androidx.navigation.navigation
 import com.business.fityou.ui.composables.exercises.ExerciseDetailScreen
 import com.business.fityou.ui.composables.exercises.ExercisesScreen
 import com.business.fityou.ui.composables.home.HomeScreen
+import com.business.fityou.ui.composables.product.ProductScreen
 import com.business.fityou.ui.composables.profile.ProfileScreen
+import com.business.fityou.ui.composables.search.SearchScreen
 import com.business.fityou.ui.composables.settings.SettingsScreen
 import com.business.fityou.ui.composables.stats.StatsDetailScreen
 import com.business.fityou.ui.composables.stats.StatsScreen
@@ -115,6 +116,18 @@ fun NavGraphBuilder.mainNavGraph(
             bottomBarState.value = true
         }
 
+        composable(route = Screens.Search.route) {
+            SearchScreen(navController = navController)
+            bottomBarState.value = true
+        }
+
+        composable(
+            route = Screens.Product.route,
+            arguments = Screens.Product.navArg
+        ) {
+            ProductScreen(navController = navController)
+        }
+
         composable(route = Screens.Settings.route) {
             SettingsScreen(
                 settingsViewModel = settingsViewModel,
@@ -132,9 +145,9 @@ fun BottomNavBar(
 ) {
     val screens = listOf(
         Screens.Home,
-        Screens.Stats,
-        Screens.Profile,
         Screens.Exercises,
+        Screens.Search,
+        Screens.Profile,
         Screens.Settings
     )
     val navBackStackEntry by navController.currentBackStackEntryAsState()

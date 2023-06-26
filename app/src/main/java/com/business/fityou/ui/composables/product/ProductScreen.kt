@@ -59,6 +59,7 @@ fun ProductScreen(navController: NavController, viewModel: ProductViewModel = hi
             modifier = Modifier
                 .verticalScroll(rememberScrollState())
                 .fillMaxWidth()
+                .padding(it)
                 .padding(bottom = 16.dp)
                 .pointerInput(Unit) {
                     detectTapGestures(onTap = {

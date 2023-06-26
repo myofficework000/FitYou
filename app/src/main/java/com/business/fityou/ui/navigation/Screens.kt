@@ -6,8 +6,11 @@ import androidx.compose.material.icons.rounded.Analytics
 import androidx.compose.material.icons.rounded.FitnessCenter
 import androidx.compose.material.icons.rounded.Home
 import androidx.compose.material.icons.rounded.Person
+import androidx.compose.material.icons.rounded.SetMeal
 import androidx.compose.material.icons.rounded.Settings
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.navigation.NavType
+import androidx.navigation.navArgument
 import com.business.fityou.R
 import com.business.fityou.ui.composables.product.ProductSource
 
@@ -51,13 +54,18 @@ sealed class Screens(
         Screens(route = "settings", title = R.string.settings, icon = Icons.Rounded.Settings)
 
 
-    object Search : Screens(route = "search", title = R.string.Search)
+    object Search : Screens(route = "search", title = R.string.Search, icon = Icons.Rounded.SetMeal)
     object Product : Screens(
         route = "product/{$ARG_PRODUCT_SOURCE}/{$ARG_PRODUCT_ID}",
         title = R.string.product
     ) {
         fun navigationLink(source: ProductSource, id: Long): String =
             "product/$source/$id"
+
+        val navArg = listOf(
+            navArgument(ARG_PRODUCT_SOURCE) { type = NavType.StringType },
+            navArgument(ARG_PRODUCT_ID) { type = NavType.LongType }
+        )
     }
 }
 
