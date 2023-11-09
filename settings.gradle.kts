@@ -13,4 +13,5 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "FitYou"
-include ':app'
+include(":app")
+
