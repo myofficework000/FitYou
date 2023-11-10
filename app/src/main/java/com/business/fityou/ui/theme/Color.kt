@@ -6,6 +6,13 @@ val holoRed = Color(0xFFFF4444)
 val white = Color(0xFFFFFFFF)
 val blue = Color(0xFF2400FF)
 val veryDarkBlue = Color(0xFF001016)
+// common colors
+val Green100 = Color(0xFF57B940)
+val Green50 = Color(0x5986D773)
+val Blue100 = Color(0xFF45aaf2)
+val Blue50 = Color(0x5945AAF2)
+val Orange100 = Color(0xFFfa8231)
+val Orange50 = Color(0x59FA8231)
 
 // light mode colors
 val BackgroundCreamWhite = Color(0xFFFFFFF0)

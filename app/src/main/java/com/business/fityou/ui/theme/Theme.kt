@@ -18,8 +18,6 @@ private val LightColorPalette = lightColors(
     primary = darkBlue,
     primaryVariant = lightBlue,
     secondary = holoGreen,
-
-
 )
 
 @Composable
