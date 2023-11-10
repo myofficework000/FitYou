@@ -31,6 +31,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.BlendMode.Companion.Screen
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
@@ -44,8 +45,9 @@ import coil.compose.rememberImagePainter
 import com.business.fityou.domain.product.MealType
 import com.business.fityou.ui.composables.common.MealsList
 import com.business.fityou.R
+import com.business.fityou.domain.product.Statistic
 import com.business.fityou.ui.navigation.Screens
-
+/*
 @Composable
 fun HomeScreen(navController: NavController, viewModel: MealViewModel = hiltViewModel()) {
     val products by viewModel.products.collectAsState(initial = emptyList())
@@ -114,7 +116,6 @@ fun HomeHeader(navController: NavController) {
             verticalAlignment = Alignment.CenterVertically
         ) {
             Image(
-                //TODO : set user's picture
                 painter = rememberImagePainter("https://images.pexels.com/photos/2531553/pexels-photo-2531553.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"),
                 contentDescription = stringResource(R.string.home_header_user_photo),
                 contentScale = ContentScale.Crop,
@@ -149,7 +150,7 @@ fun CaloriesProgress(stats: Statistic) {
 
     val progress: Float by animateFloatAsState(
         targetValue = stats.totalCalories.toFloat() / 2500f,
-        animationSpec = tween(durationMillis = 500, easing = FastOutSlowInEasing)
+        animationSpec = tween(durationMillis = 500, easing = FastOutSlowInEasing), label = ""
     )
 
     Column(verticalArrangement = Arrangement.Center) {
@@ -176,5 +177,5 @@ fun CaloriesProgress(stats: Statistic) {
             Text(text = stringResource(R.string.home_stats_calories_left, left), fontSize = 13.sp, fontWeight = Bold, color = colors.onBackground)
         }
     }
-}
+}*/
 

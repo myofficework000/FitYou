@@ -3,7 +3,15 @@ package com.business.fityou.ui.composables.meal
 import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme.colors
@@ -20,25 +28,22 @@ import androidx.compose.ui.unit.sp
 import com.business.fityou.R
 import com.business.fityou.domain.product.Statistic
 import com.business.fityou.ui.theme.Blue100
-import com.business.fityou.ui.theme.Blue50
 import com.business.fityou.ui.theme.Green100
-import com.business.fityou.ui.theme.Green50
 import com.business.fityou.ui.theme.Orange100
-import com.business.fityou.ui.theme.Orange50
 
 @Composable
 fun MacroNutrimentsCard(stats: Statistic) {
     val carbs: Float by animateFloatAsState(
         targetValue = stats.totalCarbs.toFloat(),
-        animationSpec = tween(durationMillis = 500, easing = FastOutSlowInEasing)
+        animationSpec = tween(durationMillis = 500, easing = FastOutSlowInEasing), label = ""
     )
     val fats: Float by animateFloatAsState(
         targetValue = stats.totalFats.toFloat(),
-        animationSpec = tween(durationMillis = 500, easing = FastOutSlowInEasing)
+        animationSpec = tween(durationMillis = 500, easing = FastOutSlowInEasing), label = ""
     )
     val proteins: Float by animateFloatAsState(
         targetValue = stats.totalProteins.toFloat(),
-        animationSpec = tween(durationMillis = 500, easing = FastOutSlowInEasing)
+        animationSpec = tween(durationMillis = 500, easing = FastOutSlowInEasing), label = ""
     )
 
     Card(
@@ -97,10 +102,9 @@ fun MacroNutrimentsCard(stats: Statistic) {
                 )
 
             }
-            // TODO : remove hardcoded max progress
-            // TODO : retrieve preferences
+
             Box(contentAlignment = Alignment.Center) {
-                CircularProgressBar(
+                /*       CircularProgressBar(
                     modifier = Modifier.size(145.dp),
                     progress = carbs,
                     progressMax = 300f,
@@ -134,9 +138,8 @@ fun MacroNutrimentsCard(stats: Statistic) {
                     backgroundProgressBarWidth = 13.dp,
                     roundBorder = true,
                     startAngle = 0f
-                )
+                )*/
             }
         }
-
     }
 }
